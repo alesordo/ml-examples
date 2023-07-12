@@ -52,7 +52,7 @@ def build_pipeline(model_name):
         ('model', DecisionTreeRegressor()),
     ])
 
-    # Train models
+    # Train models - if you need to train more than one model, put them in a for cycle
     clf = RandomizedSearchCV(pipeline, distributions, n_iter=10, cv=5, verbose=1)
     search = clf.fit(X_train, y_train)
 

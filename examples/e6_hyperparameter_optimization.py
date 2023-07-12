@@ -10,8 +10,9 @@ def optimize_model():
     _, X, y = create_regression_dataset()
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
+    # These are the hyperparameters to tune for the DecisionTreeRegressor model
     distributions =  {
-        'criterion': ['absolute_error', 'friedman_mse', 'squared_error'],
+        'criterion': ['absolute_error', 'friedman_mse', 'squared_error', 'poisson'],
         'splitter': ['best', 'random'],
         'max_depth': list(range(3, 15)),
     }
@@ -27,6 +28,8 @@ def optimize_model():
     print(f'\nGrid Search ({num_iterations} iterations):')
     print('Training scores:', search.cv_results_['mean_test_score'].mean())
     print('Test scores:', scores['R2'], '\n')
+
+    print('Best estimator: ', search.best_estimator_)
 
 
     # Using a randomized search

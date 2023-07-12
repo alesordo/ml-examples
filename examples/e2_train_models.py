@@ -14,6 +14,9 @@ def train_regression():
     model = DecisionTreeRegressor() # Create the model
     model.fit(X, y) # Train the model
     predictions = model.predict(X) # Make some predictions
+
+    print("X: ", type(X), X.shape)
+
     return model, predictions, X, y
 
     # Note that X and y are not very informative variable names, but they are
@@ -37,6 +40,7 @@ def train_classification():
 
 if __name__ == '__main__':
     df_regression, df_classification = create_datasets()
+    df_regression = create_datasets()
 
     model, predictions, X, y = train_regression()
     print('\nRegression predictions:', predictions, type(predictions), predictions.shape)

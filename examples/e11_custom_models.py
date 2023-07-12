@@ -4,11 +4,13 @@ import pandas as pd
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 from sklearn.tree import DecisionTreeClassifier
 
-from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, TerminateOnNaN
-from tensorflow.keras.layers import Activation, BatchNormalization, Dense, Dropout
-from tensorflow.keras.metrics import CategoricalAccuracy
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.utils import to_categorical
+from tensorflow.python import keras
+
+from keras.callbacks import EarlyStopping, ReduceLROnPlateau, TerminateOnNaN
+from keras.layers import Activation, BatchNormalization, Dense, Dropout
+from keras.metrics import CategoricalAccuracy
+from keras.models import Sequential
+from keras.utils import to_categorical
 
 from e1_create_dataset import create_classification_dataset
 from e2_train_models import train_classification
@@ -173,4 +175,5 @@ if __name__ == '__main__':
         predictions = search.fit(X_train, y_train)
         predictions = search.predict(X_test)
         scores = classification_scores(y_test, predictions)
+        # print("Best estimator parameters (only for custom DNN): ", search.best_estimator_.get_params())
         print(scores['accuracy'])
